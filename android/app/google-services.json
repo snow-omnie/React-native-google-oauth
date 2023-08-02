@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "416501924304",
+    "project_id": "native-oauth-b3dc3",
+    "storage_bucket": "native-oauth-b3dc3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416501924304:android:adcd8954cf1582b3b339d5",
+        "android_client_info": {
+          "package_name": "com.jiotestnative"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "416501924304-2q0hg0hudar20ojk2q1hjujfjguk8cro.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jiotestnative",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "416501924304-idvubqan13ehf51v1jlrjsj6k3e6h5h2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZkQRU8TFbPxSUb9UrURfeGYeS8x4LI8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "416501924304-idvubqan13ehf51v1jlrjsj6k3e6h5h2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
