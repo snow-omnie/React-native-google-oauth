@@ -75,6 +75,7 @@ const Navigators = () => {
             <Stack.Screen name='Start' component={StartScreen} options={{ statusBarHidden: true, }} />
             <Stack.Screen name='Login' component={LoginScreen} />
             <Stack.Screen name='ProfileScreen' component={BottomTabs} />
+            <Stack.Screen name='Home' component={HomeScreen} />
 
         </Stack.Navigator>
     )

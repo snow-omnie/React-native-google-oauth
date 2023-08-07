@@ -26,6 +26,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import Navigators from './src/Navigators';
+import notifee from '@notifee/react-native';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';

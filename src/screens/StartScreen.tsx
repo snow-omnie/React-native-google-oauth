@@ -5,7 +5,7 @@ import { BottomStackParamList, NativeStackParamList } from '../types';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import CustomButton from '../components/CustomButton';
 import { getData } from '../utils';
-export type Props = NativeStackScreenProps<NativeStackParamList, 'ProfileScreen', 'MyStack'>;
+export type Props = NativeStackScreenProps<NativeStackParamList, ['ProfileScreen', 'HomeScreen'], 'MyStack'>;
 
 const StartScreen = ({ navigation }: Props) => {
 
@@ -28,6 +28,8 @@ const StartScreen = ({ navigation }: Props) => {
             {/* <Text> */}
             <CustomButton label={"Continue"} onPress={() => navigation.navigate("Login")} style={{ color: COLORS.white, backgroundColor: COLORS.primary_purple }} />
             {/* </Text> */}
+            <CustomButton label={"Go to Home"} onPress={() => navigation.navigate("Home")} style={{ color: COLORS.white, backgroundColor: COLORS.primary_purple }} />
+
         </View>
     )
 }
