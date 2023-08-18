@@ -5,16 +5,10 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { PropsWithChildren } from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+  Alert
 } from 'react-native';
 
 import {
@@ -26,14 +20,36 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import Navigators from './src/Navigators';
-import notifee from '@notifee/react-native';
+import messaging from '@react-native-firebase/messaging';
+import { ForegroundListener, getDeviceToken, notificationListener, requestUserPermission } from './src/utils/notification_helper';
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  useEffect(() => {
+    let device = getDeviceToken()
+    console.log("token", device);
+
+    // requestUserPermission();
+    notificationListener()
+    // Set up foreground message listener
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('Alert Title', JSON.stringify(remoteMessage))
+      console.log('A new foreground message arrived!', remoteMessage);
+      // You can handle the message here
+    });
+
+    return unsubscribe; // Cleanup function to remove the listener when component unmounts
+  }, [])
+
+
+
+  // useEffect(() => {
+  //   const unsubscribe = messaging().onMessage(async remoteMessage => {
+  //     Alert.alert('A new FCM message arrived in foreground mode', JSON.stringify(remoteMessage))
+  //   })
+  //   return unsubscribe
+  // }, [])
+
 
   return (
     <NavigationContainer>

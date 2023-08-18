@@ -35,6 +35,9 @@ const HomeScreen = () => {
         <View style={styles.container}>
             <Text>HomeScreen</Text>
             <Button title="Display Notification" onPress={() => onDisplayNotification()} />
+            <View>
+
+            </View>
         </View>
     )
 }
