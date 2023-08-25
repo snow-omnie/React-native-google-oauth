@@ -13,6 +13,7 @@ import PostDetails from './screens/PostDetails';
 import { Image, StyleSheet, View } from 'react-native';
 import imagePaths from './constants/imagePaths';
 import { COLORS } from './theme';
+import LocationScreen from './screens/LocationScreen';
 const BottomTab = createBottomTabNavigator<BottomStackParamList>();
 
 const BottomTabs = () => {
@@ -51,6 +52,18 @@ const BottomTabs = () => {
                 }
             } />
             <BottomTab.Screen name='PostDetails' component={PostDetails} options={
+                {
+                    tabBarIcon: ({ focused }) => {
+                        return (
+                            <Image
+                                // tintColor={focused ? "red" : "grey"}
+                                source={imagePaths.Icon3}
+                                style={styles.icon}
+                            />)
+                    }
+                }
+            } />
+            <BottomTab.Screen name='Locate' component={LocationScreen} options={
                 {
                     tabBarIcon: ({ focused }) => {
                         return (

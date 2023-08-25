@@ -10,6 +10,7 @@ export type BottomStackParamList = {
     Profile: undefined;
     PostDetails: undefined;
     Home: undefined;
+    Locate: undefined
 }
 export type MyListProps = {
     brand?: string,

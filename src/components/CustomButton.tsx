@@ -1,12 +1,11 @@
 import { View, Text, StyleSheet, TouchableHighlight, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { FC } from 'react'
 import { COLORS } from '../theme'
 
-const CustomButton = (props: any) => {
-    console.log("props", props)
+const CustomButton: FC<{ style?: object, borderRadius?: number, onPress?: any, label?: string }> = ({ style, borderRadius, onPress, label }) => {
     return (
-        <TouchableOpacity style={{ ...styles.container, ...props.style, borderRadius: props.borderRadius ? props.borderRadius : 25 }} onPress={props.onPress}>
-            <Text style={{ ...styles.text, color: props?.style?.color ? props.style.color : COLORS.black }}>{props.label}</Text>
+        <TouchableOpacity style={{ ...styles.container, ...style, borderRadius: borderRadius ? borderRadius : 25 }} onPress={onPress}>
+            <Text style={{ ...styles.text, color: style?.color ? style.color : COLORS.black }}>{label}</Text>
         </TouchableOpacity >
     )
 }
