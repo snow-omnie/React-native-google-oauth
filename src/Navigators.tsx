@@ -25,13 +25,14 @@ const BottomTabs = () => {
                 {
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <Image
+                            <View style={focused && styles.centerIcon}>
+                                <Image
 
-                                // tintColor={focused ? "#1e90ff14" : "grey"
-                                // }
-                                source={imagePaths.Icon1}
-                                style={styles.icon}
-                            />)
+                                    // tintColor={focused ? "#1e90ff14" : "grey"
+                                    // }
+                                    source={imagePaths.Icon1}
+                                    style={focused ? styles.focussedIcon : styles.icon}
+                                /></View>)
                     }
                 }
             } />
@@ -39,11 +40,11 @@ const BottomTabs = () => {
                 {
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <View style={styles.centerIcon}>
+                            <View style={focused && styles.centerIcon}>
                                 <Image
                                     // tintColor={focused ? "red" : "grey"}
                                     source={imagePaths.Icon2}
-                                    style={{ width: 40, height: 40 }}
+                                    style={focused ? styles.focussedIcon : styles.icon}
                                 />
                             </View>
                         )
@@ -54,12 +55,13 @@ const BottomTabs = () => {
             <BottomTab.Screen name='PostDetails' component={PostDetails} options={
                 {
                     tabBarIcon: ({ focused }) => {
-                        return (
+                        return (<View style={focused && styles.centerIcon}>
                             <Image
                                 // tintColor={focused ? "red" : "grey"}
                                 source={imagePaths.Icon3}
-                                style={styles.icon}
-                            />)
+                                style={focused ? styles.focussedIcon : styles.icon}
+                            />
+                        </View>)
                     }
                 }
             } />
@@ -67,11 +69,13 @@ const BottomTabs = () => {
                 {
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <Image
-                                // tintColor={focused ? "red" : "grey"}
-                                source={imagePaths.Icon3}
-                                style={styles.icon}
-                            />)
+                            <View style={focused && styles.centerIcon}>
+                                <Image
+                                    // tintColor={focused ? "red" : "grey"}
+                                    source={imagePaths.Icon3}
+                                    style={focused ? styles.focussedIcon : styles.icon}
+                                />
+                            </View>)
                     }
                 }
             } />
@@ -103,6 +107,7 @@ const styles = StyleSheet.create({
         padding: 25,
         borderRadius: 50,
         backgroundColor: COLORS.primary4
-    }
+    },
+    focussedIcon: { width: 40, height: 40 }
 })
 export default Navigators
