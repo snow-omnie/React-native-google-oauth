@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import MapboxGL from "@rnmapbox/maps";
 MapboxGL.setWellKnownTileServer('Mapbox');
 
@@ -36,6 +36,11 @@ const defaultStyle = {
     ],
 };
 const PostDetails = () => {
+
+    useEffect(() => {
+        MapboxGL.setTelemetryEnabled(false);
+
+    }, [])
     return (
         <View>
             <Text>PostDetails mapbox</Text>
