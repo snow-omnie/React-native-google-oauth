@@ -56,6 +56,7 @@ const LocationScreen = () => {
     };
 
     useEffect(() => {
+        requestLocationPermission()
         getLocation()
 
         return () => {
