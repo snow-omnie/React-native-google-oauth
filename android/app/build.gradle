@@ -89,6 +89,13 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('jiotestnative.keystore')
+            storeFile file('jiotestnative.keystore')
+            storePassword 'jiotestnative'
+            keyAlias 'jiotestnative'
+            keyPassword 'jiotestnative'
+    }
     }
     buildTypes {
         debug {

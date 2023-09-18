@@ -22,6 +22,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Navigators from './src/Navigators';
 import messaging from '@react-native-firebase/messaging';
 import { ForegroundListener, getDeviceToken, notificationListener, requestUserPermission } from './src/utils/notification_helper';
+// import crashlytics from '@react-native-firebase/crashlytics';
 
 function App(): JSX.Element {
 
@@ -41,7 +42,9 @@ function App(): JSX.Element {
     return unsubscribe; // Cleanup function to remove the listener when component unmounts
   }, [])
 
-
+  // useEffect(() => {
+  //   crashlytics().log('App mounted.');
+  // }, []);
 
   // useEffect(() => {
   //   const unsubscribe = messaging().onMessage(async remoteMessage => {

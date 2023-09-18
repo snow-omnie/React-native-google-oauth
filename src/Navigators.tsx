@@ -64,7 +64,14 @@ const BottomTabs = () => {
                         </View>)
                     }
                 }
-            } />
+            }
+            // listeners={({ navigation }) => ({
+            //     tabPress: (e) => {
+            //         e.preventDefault();
+            //         navigation.navigate("")
+            //     }
+            // })}
+            />
             <BottomTab.Screen name='Locate' component={LocationScreen} options={
                 {
                     tabBarIcon: ({ focused }) => {

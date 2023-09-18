@@ -15,11 +15,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        credentials {
-                // Do not change the username below.
-                // This should always be `mapbox` (not your username).
-                username = 'mapbox'
-            }
+       
     }
     dependencies {
         classpath("com.android.tools.build:gradle")

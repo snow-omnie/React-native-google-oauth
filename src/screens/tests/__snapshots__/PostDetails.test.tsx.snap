@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post details snapShot 1`] = `
+<View>
+  <Text>
+    PostDetails mapbox
+  </Text>
+  <View>
+    <Text>
+      Biometric
+    </Text>
+  </View>
+</View>
+`;
