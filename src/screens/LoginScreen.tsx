@@ -5,6 +5,7 @@ import { storeData } from '../utils';
 import { BottomStackParamList, NativeStackParamList } from '../types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { COLORS } from '../theme';
+// const CroissantOne = require("../assets/fonts/CroissantOne-Regular.ttf")
 export type Props = NativeStackScreenProps<BottomStackParamList, 'Home', 'MyStack'>;
 
 const LoginScreen = ({ navigation }: Props) => {
@@ -35,7 +36,7 @@ const LoginScreen = ({ navigation }: Props) => {
                     user: userInfo.user
                 }
                 storeData("userInfo", data)
-                navigation.navigate("ProfileScreen")
+                // navigation.navigate("ProfileScreen")
             }
         } catch (error) {
             console.log("error", JSON.stringify(error))
@@ -52,7 +53,7 @@ const LoginScreen = ({ navigation }: Props) => {
     };
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>Login to continue</Text>
+            <Text style={{ ...styles.header, fontFamily: 'Fuggles-Regular' }}>Login to continue</Text>
             <Text>
                 <GoogleSigninButton
                     size={GoogleSigninButton.Size.Wide}
@@ -68,9 +69,9 @@ const LoginScreen = ({ navigation }: Props) => {
 export default LoginScreen
 
 const styles = StyleSheet.create({
+
     header: {
         fontSize: 30,
-        fontWeight: "800"
     },
     container: {
         flex: 1,

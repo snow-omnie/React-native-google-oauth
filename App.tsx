@@ -27,6 +27,8 @@ import { ForegroundListener, getDeviceToken, notificationListener, requestUserPe
 function App(): JSX.Element {
 
   useEffect(() => {
+
+
     let device = getDeviceToken()
     console.log("token", device);
 

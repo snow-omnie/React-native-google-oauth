@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import StartScreen from './screens/StartScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -14,6 +14,7 @@ import { Image, StyleSheet, View } from 'react-native';
 import imagePaths from './constants/imagePaths';
 import { COLORS } from './theme';
 import LocationScreen from './screens/LocationScreen';
+import { getData } from './utils';
 const BottomTab = createBottomTabNavigator<BottomStackParamList>();
 
 const BottomTabs = () => {
@@ -92,19 +93,54 @@ const BottomTabs = () => {
 
 
 const Navigators = () => {
+    const [storageData, setStorageData] = useState()
+    const Stack = createNativeStackNavigator();
+
+    useEffect(() => {
+        authenticate()
+    }, [])
+    async function authenticate() {
+        const token = await getData("userInfo")
+        setStorageData(token)
+    }
+
+    console.log("storageData", storageData);
+
+
+    return (
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+            {storageData ? <Stack.Screen name='HomeStack' component={HomeStack} />
+                : <Stack.Screen name='LoginStack' component={LoginStack} />
+            }
+        </Stack.Navigator>
+    )
+}
+
+const HomeStack = () => {
+    const Stack = createNativeStackNavigator();
+    return (
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name='ProfileScreen' component={BottomTabs} />
+
+        </Stack.Navigator>
+    )
+
+}
+
+const LoginStack = () => {
     const Stack = createNativeStackNavigator();
 
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+
             <Stack.Screen name='Start' component={StartScreen} options={{ statusBarHidden: true, }} />
             <Stack.Screen name='Login' component={LoginScreen} />
-            <Stack.Screen name='ProfileScreen' component={BottomTabs} />
+            {/* <Stack.Screen name='ProfileScreen' component={BottomTabs} /> */}
             <Stack.Screen name='Home' component={HomeScreen} />
 
         </Stack.Navigator>
     )
 }
-
 
 const styles = StyleSheet.create({
     icon: {

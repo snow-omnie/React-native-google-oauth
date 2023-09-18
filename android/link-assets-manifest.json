@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/CroissantOne-Regular.ttf",
+      "sha1": "a00b3d0b6491ee5e8d76de54a2539bd056c6db8d"
+    },
+    {
+      "path": "src/assets/fonts/Fuggles-Regular.ttf",
+      "sha1": "72c3867ca1584c2d6708395375321c081751d54d"
+    }
+  ]
+}

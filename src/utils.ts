@@ -31,7 +31,7 @@ export const signOut = async (navigation: any) => {
     console.log("in signout")
     try {
         AsyncStorage.clear()
-        navigation.navigate("Login")
+        // navigation.navigate("Login")
     } catch (e) {
 
     }
