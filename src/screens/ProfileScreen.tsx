@@ -1,10 +1,14 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { getData, signOut } from '../utils'
+import { checkBiometric, getData, signOut } from '../utils'
 import { BottomStackParamList } from '../types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import CustomButton from '../components/CustomButton';
 import { COLORS } from '../theme';
+import ReactNativeBiometrics from 'react-native-biometrics'
+
+const rnBiometrics = new ReactNativeBiometrics()
+
 export type Props = NativeStackScreenProps<BottomStackParamList, 'Home', 'MyStack'>;
 
 const ProfileScreen = ({ navigation }: Props) => {
@@ -12,13 +16,15 @@ const ProfileScreen = ({ navigation }: Props) => {
 
 
     useEffect(() => {
-        (
-            async () => {
-                const x = await getData("userInfo")
-                setUser(x);
-            })()
+
+        (async () => {
+            let info = await getData("userInfo")
+            if (info) {
+                checkBiometric()
+            }
+        })()
     }, [])
-    console.log("x", user)
+
 
     return (
         <View style={styles.container}>

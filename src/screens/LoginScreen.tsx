@@ -1,11 +1,16 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
-import { storeData } from '../utils';
+import { getData, storeData } from '../utils';
 import { BottomStackParamList, NativeStackParamList } from '../types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { COLORS } from '../theme';
 // const CroissantOne = require("../assets/fonts/CroissantOne-Regular.ttf")
+import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics'
+
+const rnBiometrics = new ReactNativeBiometrics()
+
+
 export type Props = NativeStackScreenProps<BottomStackParamList, 'Home', 'MyStack'>;
 
 const LoginScreen = ({ navigation }: Props) => {
@@ -23,8 +28,10 @@ const LoginScreen = ({ navigation }: Props) => {
         profileImageSize: 120, // [iOS] The desired height (and width) of the profile image. Defaults to 120px
     });
 
+
+
     const signIn = async () => {
-        console.log("press")
+
         try {
             await GoogleSignin.hasPlayServices();
             const userInfo = await GoogleSignin.signIn();
@@ -37,6 +44,9 @@ const LoginScreen = ({ navigation }: Props) => {
                 }
                 storeData("userInfo", data)
                 // navigation.navigate("ProfileScreen")
+            } else {
+                // login with biometrics
+
             }
         } catch (error) {
             console.log("error", JSON.stringify(error))
@@ -50,7 +60,47 @@ const LoginScreen = ({ navigation }: Props) => {
             //   // some other error happened
             // }
         }
+
     };
+
+    const checkBiometric = async () => {
+        const { available, biometryType } = await rnBiometrics.isSensorAvailable()
+        if (biometryType === BiometryTypes.Biometrics) {
+            //do something face id specific
+            if (available && biometryType === BiometryTypes.TouchID) {
+                console.log('TouchID is supported')
+            } else if (available && biometryType === BiometryTypes.FaceID) {
+                console.log('FaceID is supported')
+            } else if (available && biometryType === BiometryTypes.Biometrics) {
+                console.log('Biometrics is supported')
+                // rnBiometrics.createKeys()
+                //     .then((resultObject) => {
+                //         const { publicKey } = resultObject
+                //         console.log("publicKey", publicKey)
+                //         // sendPublicKeyToServer(publicKey)
+                //     })
+                rnBiometrics.simplePrompt({ promptMessage: 'Confirm fingerprint' })
+                    .then((resultObject) => {
+                        const { success } = resultObject
+
+                        if (success) {
+                            console.log('successful biometrics provided')
+                        } else {
+                            console.log('user cancelled biometric prompt')
+                        }
+                    })
+                    .catch(() => {
+                        console.log('biometrics failed')
+                    })
+
+
+            } else {
+                console.log('Biometrics not supported')
+            }
+
+        }
+
+    }
     return (
         <View style={styles.container}>
             <Text style={{ ...styles.header, fontFamily: 'Fuggles-Regular' }}>Login to continue</Text>
@@ -71,7 +121,7 @@ export default LoginScreen
 const styles = StyleSheet.create({
 
     header: {
-        fontSize: 30,
+        fontSize: 50,
     },
     container: {
         flex: 1,
