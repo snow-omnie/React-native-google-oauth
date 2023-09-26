@@ -15,6 +15,7 @@ import imagePaths from './constants/imagePaths';
 import { COLORS } from './theme';
 import LocationScreen from './screens/LocationScreen';
 import { getData } from './utils';
+import MapScreen from './screens/MapScreen';
 const BottomTab = createBottomTabNavigator<BottomStackParamList>();
 
 const BottomTabs = () => {
@@ -121,7 +122,7 @@ const HomeStack = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name='ProfileScreen' component={BottomTabs} />
-
+            <Stack.Screen name='MapScreen' component={MapScreen} />
         </Stack.Navigator>
     )
 

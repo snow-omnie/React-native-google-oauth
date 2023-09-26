@@ -6,7 +6,7 @@ import CustomButton from '../components/CustomButton'
 import RNFetchBlob from 'rn-fetch-blob'
 import FileDownload from '../components/FileDownload'
 
-const PostDetails = () => {
+const PostDetails = ({ navigation }) => {
 
     const buttonClick = async () => {
         console.log("click");
@@ -60,9 +60,9 @@ const PostDetails = () => {
             {/* <MapBox /> */}
             <Biometric />
             <FileDownload />
-            {/* <CustomButton label="Download" style={styles.buttonStyle} onPress={buttonClick} />
+            {/* <CustomButton label="Download" style={styles.buttonStyle} onPress={buttonClick} />*/}
 
-            <CustomButton label="download file" style={styles.buttonStyle} onPress={showFile} /> */}
+            <CustomButton label="Map View" style={styles.buttonStyle} onPress={() => navigation.navigate('MapScreen')} />
         </View>
     )
 }
