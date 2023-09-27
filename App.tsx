@@ -7,6 +7,7 @@
 
 import React, { useEffect } from 'react';
 import type { PropsWithChildren } from 'react';
+import { enableLatestRenderer } from 'react-native-maps';
 import {
   Alert
 } from 'react-native';
@@ -23,6 +24,8 @@ import Navigators from './src/Navigators';
 import messaging from '@react-native-firebase/messaging';
 import { ForegroundListener, getDeviceToken, notificationListener, requestUserPermission } from './src/utils/notification_helper';
 // import crashlytics from '@react-native-firebase/crashlytics';
+
+enableLatestRenderer();
 
 function App(): JSX.Element {
 

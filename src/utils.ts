@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics'
-import React, { BackHandler } from 'react-native';
+import React, { BackHandler, PermissionsAndroid, Linking, Platform } from 'react-native';
+import { checkMultiple, PERMISSIONS } from 'react-native-permissions';
 
 const rnBiometrics = new ReactNativeBiometrics()
 
@@ -52,8 +53,42 @@ export const signOut = async (navigation: any) => {
 
     }
 }
+
+export const checkApplicationPermission = async () => {
+    if (Platform.OS === 'ios') {
+        Linking.openURL('app-settings:');
+    } else {
+        // Linking.openSettings();
+        Linking.sendIntent('android.settings.SETTINGS')
+        // console.log("PERMISSIONS.IOS.CAMERA");
+
+
+    }
+    try {
+        console.log("checking");
+
+        const GRANTED = await PermissionsAndroid.request(
+            // PermissionsAndroid.PERMISSIONS.USE_BIOMETRIC
+            PermissionsAndroid.PERMISSIONS.USE_FINGERPRINT,
+            {
+                title: 'Geolocation Permission',
+                message: 'Can we access your location?',
+                buttonNeutral: 'Ask Me Later',
+                buttonNegative: 'Cancel',
+                buttonPositive: 'OK',
+            },
+        )
+        console.log("GRANTED", GRANTED);
+        return GRANTED
+    } catch (error) {
+        console.log(error);
+
+    }
+}
 export const checkBiometric = async () => {
     const { available, biometryType } = await rnBiometrics.isSensorAvailable()
+
+
     if (biometryType === BiometryTypes.Biometrics) {
         //do something face id specific
         if (available && biometryType === BiometryTypes.TouchID) {
